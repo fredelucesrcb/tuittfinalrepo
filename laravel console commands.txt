@@ -1,0 +1,65 @@
+composer create-project (naming)
+-creates a project with laravel
+
+composer dump-autoload
+-clear the autoloader
+
+
+****** For clearing cache*****
+php artisan config:clear
+php artisan config:cache
+******************************
+
+
+*****interact with the database with eloquent*****
+php artisan tinker
+quit - exits tinker
+**************************************************
+
+***** to access model name
+App\(model name)
+
+*****make a controller*****
+php artisan make:controller (controller name)
+***************************
+
+*****make authentication*****
+php artisan make:auth
+****************************
+
+*****make a controller with CRUD functionalities******
+php artisan make:controller (controller name) --resource
+*************************
+
+*****get route list******
+php artisan route:list
+************************
+
+*****automatically map routes to functions*****
+[in web.php] Route::resource('(url)', '(Controller name)');
+***********************************************
+
+*****create a migration******
+php artisan make:migration [add_user_id_to_posts]
+*****************************
+
+*****migrate data to database*****
+php artisan migrate
+**********************************
+
+******delete migration*****
+php artisan migrate rollback
+*******************************
+
+******setup a custom port******
+php artisan serve --port=[8080]
+*******************************
+
+******make a migration folder signifying to use talbe users*****
+php artisan make:migration [name] --table=users
+**********************************************************
+
+*****socket_error_chuchu*****
+check image size if super laki
+****************************
+

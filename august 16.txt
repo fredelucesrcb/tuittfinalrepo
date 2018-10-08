@@ -1,0 +1,81 @@
+
+subquerying:
+SELECT shirt_id FROM Materials WHERE material = 'denim';
+
+SELECT size FROM Shirts WHERE id=2; 
+
+SELECT size FROM Shirts WHERE id = (SELECT shirt_id FROM Materials WHERE material = 'denim');
+
+Get the price and size of cotton shirts.
+SELECT price, size FROM Shirts WHERE id IN (SELECT shirt_id FROM Materials WHERE material = 'cotton'); 
+
+
+Find makers of PCs with a speed of at least 3.0
+
+SELECT maker FROM products WHERE model IN (SELECT model FROM pcs WHERE speed >3.0);
+
+SELECT * FROM movie_casts WHERE title = 'Star Wars' AND year = 2015;
+
+SELECT COUNT(*) FROM movie_casts WHERE title = 'Star Wars' AND year = 2015;
+
+
+**GROUP BY keyword**
+get the average length of songs in a table.
+
+SELECT AVG(length) FROM songs;
+
+what is the average length of each genre?
+
+SELECT AVG(length) FROM songs GROUP BY genre;
+
+*******************
+
+
+SELECT COUNT(length), SUM(length), MIN(length), MAX(length), AVG(length), genre FROM songs GROUP BY genre;
+
+
+
+**HAVING clause**
+
+similar to WHERE clause but used for aggregating results.
+
+WHAT genre has an average length of more than 250 seconds?
+
+SELECT AVG(length),genre FROM songs WHERE AVG(length)>250 GROUP BY genre;
+
+********************
+
+
+**EXERCISE**
+SELECT model FROM printers WHERE price = (SELECT MAX(price);
+
+Find the laptops whose speed is the slowest among any PC.
+
+SELECT model FROM laptops WHERE speed < (SELECT MIN(speed) FROM pcs); 
+
+FIND model number of the item(PC, laptop, or printer) with the highest prices.
+
+SELECT model FROM 
+	products p JOIN pcs pc ON (p.model = pc.model) 
+	JOIN laptops l ON (p.model = l.model)
+	JOIN printers pr ON (p.model = l.model)
+WHERE p.price 
+
+
+SELECT model FROM 
+	products p JOIN pcs pc ON (p.model = pc.model) 
+	JOIN laptops l ON (p.model = l.model)
+	JOIN printers pr ON (p.model = l.model)
+WHERE p.price 
+
+
+
+
+
+SELECT count(genre), genre FROM songs GROUP BY genre;
+
+
+**use output of one select as a table**
+
+SELECT genre FROM (SELECT COUNT(genre), genre from songs GROUP BY genre)t1; 
+

@@ -1,0 +1,5 @@
+php artisan route:list
+
+php artisan make:auth
+-creates functions for 
+php artisan migrate

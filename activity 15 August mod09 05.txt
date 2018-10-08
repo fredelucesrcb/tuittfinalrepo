@@ -1,0 +1,154 @@
+1.  who are the customers from the Philippines?
+query
+SELECT * FROM customers WHERE country='Philippines';
+
+SELECT customerName FROM customers WHERE country = 'Philippines';
+
+2.  Who is the contact person of La Rochelle GIfts customer?
+
+query
+SELECT contactLastName, contactFirstName FROM customers WHERE customerName = 'La Rochelle Gifts';\
+
+3. How much is the Manufacturer SRP of The TItanic Product?
+
+query
+
+SELECT MSRP FROM products WHERE productName = 'The Titanic';
+
+4. Who uses jfirrelli @classicmodelcars.com email?
+
+query 
+
+SELECT firstName, lastName FROM employees WHERE email = 'jfirrelli @classicmodelcars.com';
+
+5. WHo are the customers who do not have a state?
+
+query: 
+
+SELECT customerName FROM customers WHERE state IS NULL; 
+
+6. What is the email of the employee Steve Patterson?
+
+SELECT email FROM employees WHERE firstName = "Steve" AND lastName = "Pattersoni";
+
+7. List the customerName who are not in USA and have a credit limit above 3000.
+
+possible queries:
+
+SELECT customerName FROM customers WHERE NOT country = 'USA' AND creditLimit > 3000;
+
+SELECT customerName FROM customers WHERE country <> 'USA' AND creditLimit > 3000;
+ 
+SELECT customerName FROM customers WHERE country != 'USA' AND creditLimit > 3000;
+
+8. WHich products has less than 1000 items in stock or a productLine of planes?
+
+possible queries: 
+
+SELECT productName FROM products WHERE productLine = 'planes' || quantityInStock < 1000; 
+
+SELECT productName FROM products WHERE productLine = 'planes' OR quantityInStock < 1000;
+
+
+9. First names and last names of employees who have office in Tokyo;
+
+query: SELECT lastName, firstName FROM employees JOIN offices ON (employees.officeCode = offices.officeCode) WHERE offices.city = 'Tokyo';
+
+SELECT e.lastName, e.firstName FROM employees AS e JOIN offices AS o ON (e.officeCode = o.officeCode) WHERE o.city = 'Tokyo';
+
+10.  Who are the customers being served by Leslie Thompson?
+
+SELECT customerName FROM customers AS c JOIN employees AS e ON (c.salesRepEmployeeNumber = e.employeeNumber) WHERE e.lastName = 'Thompson' AND e.firstName = 'Leslie';
+
+SELECT customerName FROM customers c JOIN employees e ON (c.salesRepEmployeeNumber = e.employeeNumber) WHERE e.lastName = 'Thompson' AND e.firstName = 'Leslie';
+
+
+11. What products(productname) did the customer Baane Mini Imports order?
+
+SELECT p.productName FROM products p 
+	JOIN orderdetails od ON (p.productCode = od.productCode)
+	JOIN orders o ON (od.orderNumber=o.orderNumber)
+	JOIN customers c ON (c.customerNumber=o.customerNumber) 
+WHERE c.customerName = 'Baane Mini Imports';
+
+12. List of employees who are in the same country with the customers they serve.
+
+SELECT  e.firstName, e.lastName FROM employees e 
+	JOIN offices o ON (e.officeCode = o.officeCode)
+	JOIN customers c ON (c.salesRepEmployeeNumber = e.employeeNumber)
+WHERE c.country = o.country;
+
+13. WHo are the employees who report to Anthony Bow?
+
+SELECT e.lastName, e.firstName 
+FROM employees e, employees b 
+WHERE e.reportsTo = b.employeeNumber 
+AND b.firstName='Anthony' AND b.lastName='Bow';
+
+
+
+
+SELECT e. lastName, e.firstName FROM employees e
+	JOIN employees b ON (e.reportsTo = b.employeeNumber)
+WHERE b.firstName = 'Anthony' AND b.lastName = 'Bow'
+
+
+*****************************************************************
+
+16 August 2018
+
+1. Who is the Supervisor of ANthony Bow?
+
+SELECT b.lastName, b.firstName FROM employees ab
+	JOIN employees b ON (ab.reportsTo =  b.employeeNumber)
+WHERE ab.firstName = 'Anthony' AND ab.lastName = 'Bow'; 
+
+2. Customer without the letter "A"
+query:
+
+SELECT customerName FROM customers WHERE customerName NOT LIKE '%a%'; 
+
+3. Which productline contains "State of the art description"?
+
+SELECT productLine FROM productlines WHERE textDescription LIKE '%state of the art%';
+
+4. List all the countries of the customers.
+
+SELECT DISTINCT country FROM customers;
+
+SELECT country FROM customers GROUP BY country;
+
+5. List all order Status
+
+SELECT status FROM orders; 
+
+6. List of customers who are in USA, France, Canada, UK and Italy.
+
+SELECT customerName,country FROM customers WHERE country IN ('USA', 'France', 'Canada', 'UK', 'Italy'); 
+
+7. What is the most expensive product?
+
+SELECT productName FROM products WHERE buyPrice = (SELECT MAX(buyPrice));  
+
+8. Number of Customers who are in UK
+
+SELECT COUNT(customerName) FROM customers WHERE country = 'UK';
+
+9. Who is the customer who made the most number of order? (highest number of orders)
+
+SELECT count(customerNumber) c, 
+customerNumber FROM orders GROUP BY 
+	JOIN customers ON (customers.customerNumber = orders.customerNumber)
+customerNumber ORDER BY c DESC limit 1;
+
+10. Who is the customer who ordered the most items?
+
+SELECT SUM(quantityOrdered) from orderdetails
+	JOIN orders ON (orderdetails.orderNumber = orders.orderNumber)
+	JOIN customers ON (orders.customerNumber = customers.customerNumber)
+GROUP BY quantityOrdered
+ORDER BY SUM(quantityOrdered) DESC LIMIT 1;
+	
+
+
+

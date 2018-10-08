@@ -1,0 +1,130 @@
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Nunito', sans-serif /*!important*/;
+}
+
+.jumbotron1{
+	background-color: rgba(152, 223, 234, 1);
+}
+.jumbotron2{
+	background-color: rgba(196, 241, 190);
+}
+
+/*body{
+	overflow-x: hidden;
+}*/
+
+input{
+	width:100%;
+}
+
+.fab, .fa{
+	font-size: 2em;
+	margin-right: 0.75em;
+}
+
+.facebook, .G-plus, .github, .insta, .twitter{
+	margin: 0em 1.5em;
+}
+
+.facebook{
+	color: white;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(59,89,152,1);
+	border-radius: 50%; 
+	display: inline-block;
+	box-shadow: 1.5px 5px rgba(28, 31, 51, 0.6);
+}
+
+.fa-facebook-f{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-75%, -50%);
+
+}
+
+.twitter{
+	color: white;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(0, 172, 237, 1);
+	border-radius: 50%; 
+	display: inline-block;
+	box-shadow: 1.5px 5px rgba(28, 31, 51, 0.6);
+}
+
+.fa-twitter{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+.G-plus{
+	color: white;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(211, 72, 54,1);
+	border-radius: 50%; 
+	display: inline-block;
+	box-shadow: 1.5px 5px rgba(28, 31, 51, 0.6);
+}
+
+.fa-google-plus-g{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+.github{
+color: white;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(45,186,78,1 );
+	border-radius: 50%; 
+	display: inline-block;
+	box-shadow: 1.5px 5px rgba(28, 31, 51, 0.6);
+}
+.fa-github-alt{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.insta{
+	color: white;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(233, 89, 80, 1);
+	border-radius: 50%; 
+	display: inline-block;
+	box-shadow: 1.5px 5px rgba(28, 31, 51, 0.6);
+}
+
+.fa-instagram{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/*footer color*/
+
+.color{
+	background-color: rgba(53, 53, 76,1 );
+	color: white;
+}
+
+/*hr colors*/
+
+.color2{
+	background-color: white !important;
+}

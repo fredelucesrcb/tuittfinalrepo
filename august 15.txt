@@ -1,0 +1,161 @@
+**create users table**
+
+CREATE TABLE users(id int NOT NULL AUTO_INCREMENT, 
+username varchar(255) NOT NULL, 
+password varchar(255) NOT NULL, 
+PRIMARY KEY(id)
+);
+
+*********************
+
+**create artists table**
+
+CREATE TABLE artists(id int NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+PRIMARY KEY(id)
+);
+
+********************
+
+**create albums table**
+CREATE TABLE albums(
+id INT AUTO_INCREMENT NOT NULL,
+name VARCHAR(255) NOT NULL,
+year YEAR(4),
+artist_id INT,
+PRIMARY KEY(id),
+FOREIGN KEY(artist_id)
+REFERENCES artists(id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+);
+
+*******************
+
+**create songs table**
+
+CREATE TABLE songs(
+id INT AUTO_INCREMENT NOT NULL,
+title VARCHAR(255) NOT NULL,
+length INT,
+genre VARCHAR(255),
+album_id INT,
+PRIMARY KEY(id),
+FOREIGN KEY(album_id)
+REFERENCES albums(id)
+ON UPDATE CASCADE
+ON DELETE SET NULL
+);
+
+******************
+
+**create playlists table**
+
+CREATE TABLE playlists(
+id INT AUTO_INCREMENT NOT NULL,
+date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+user_id INT,
+PRIMARY KEY(id),
+FOREIGN KEY(user_id)
+REFERENCES users(id)
+ON UPDATE CASCADE
+ON DELETE SET NULL
+);
+
+**create playlists_songs**
+
+CREATE TABLE songs_playlists(
+id INT AUTO_INCREMENT NOT NULL,
+song_id INT,
+playlist_id INT,
+PRIMARY KEY(id),
+FOREIGN KEY(song_id) REFERENCES songs(id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(playlist_id) REFERENCES playlists(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+*************************
+
+**insert data into table**
+INSERT INTO artists(name) VALUES("Rivermaya");
+
+**************************
+
+**see contents of table**
+SELECT id,name FROM artists;
+
+*************************
+
+
+INSERT INTO songs (title, length, genre, album_id) VALUES ("Gangnam Style", 253, "k-pop", 1), ("Kundiman", 234, "OPM", 2), ("Kisapmata", 279, "OPM", 2);
+
+**show only "OPM" genre in a table**
+SELECT title FROM songs WHERE genre="OPM";
+
+************************************
+
+**UPDATE**
+
+UPDATE songs SET title='Gangnam Style' WHERE id=1;
+
+************************************
+
+**DELETE**
+
+DELETE FROM songs WHERE genre="OPM" AND length>240;
+************************************
+
+** join***
+
+SELECT name, title FROM albums JOIN songs ON(songs.album_id = songs.id);
+************************************
+
+**OUTER JOINS**
+
+outer joins let some rows that do not have matches on the other table to contain null values
+
+LEFT JOIN
+
+RIGHT JOIN
+
+** LIKE SELECTOR **
+
+SELECT name FROM pet WHERE name LIKE 'B%';
+
+*******************
+
+**ORDER BY**
+use DISTINCT to eliminate duplicate rows
+
+*******************
+
+**IN keyword**
+
+syn: SELECT * FROM songs WHERE album_id IN (2,3,4);
+
+*******************
+
+**ANY keyword**
+
+WHERE column > ANY (val1, val2, val3,);
+
+
+*******************
+
+**ALL keyword**
+
+WHERE column > ALL (val1, val2, val3);
+
+*******************
+
+**IN keyword**
+
+WHERE column IN (val1, val2, val3);
+
+*******************
+
+
+
+
+SELECT SalespersonName, COUNT(order_t.SalespersonID) AS TotalOrderQuantity
+FROM salesperson_t join order_t on (ordert_t.SalespersonID = salesperson_t.SalespersonID )
+group by order_t.SalespersonID

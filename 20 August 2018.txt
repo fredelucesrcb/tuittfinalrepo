@@ -1,0 +1,65 @@
+20 August 2018
+
+mysql -h localhost -u root
+
+*to-do-list app
+
+1. Database design
+     1.1. objects/entities
+     1.2. attributes
+     1.3. relationships
+     1.4. erd
+     1.5. erd to tables
+
+      1.1.1 Objects:
+           Users
+           Tasks
+	1.2.1: Users
+		-Username
+		- Password
+		-Email
+		-id
+
+	1.2.2: Tasks
+		-Name
+		-Status
+		-User_id
+
+	1.3. Relationships:
+		Users-task
+		One-to-Many relationship
+
+
+
+CREATE TABLE users(id int NOT NULL AUTO_INCREMENT,
+    -> username varchar(255) NOT NULL,
+    -> password varchar(255) NOT NULL,
+    -> email varchar(255) NOT NULL,
+    -> PRIMARY KEY(id)
+    -> );
+
+
+
+****IMPORT*****
+
+C:\Users\Day10\Desktop\xampp\mysql\bin>mysql -h localhost -u root new_todo_db < to_do_list_app_db_mysql_create.sql
+
+or
+
+import a file to mariadb
+
+mysql-h localhost -u root db_name < file.sql
+
+***************
+
+****EXPORT*****
+
+mysqldump -h localhost -u root db_name > db_file.sql
+
+***************
+
+*****
+localhost reserved IP address is 127.0.0.1 
+*In gitbash*
+php -S localhost:8000
+
